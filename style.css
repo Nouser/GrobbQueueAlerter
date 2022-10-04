@@ -1,0 +1,51 @@
+html {
+    max-width: 70ch;
+    padding: 0em 1em;
+    margin: auto;
+    line-height: 1.75;
+    font-size: 1.25em;
+    background-color: #EFEFEF;
+}
+
+h2,h3,h4,h5,h6 {
+    margin: 2em 0 1em;
+}
+
+h1 {
+    margin: 1em 0 .5em;
+}
+
+p,ul,ol {
+    margin-bottom: 1em;
+    color: #000000;
+    font-family: "Helvetica", "Arial", sans-serif;}
+
+p {
+    text-align: right;
+    vertical-align: middle;
+}
+
+button {
+    width: 100%;
+
+    margin: 0 3px;
+    padding-top: 60px;
+    font-size: 48px;
+    padding-bottom: 60px;
+    border-radius: 22px;
+}
+
+.checkboxInput {
+    height: 50px;
+    width: 50px;
+}
+
+.numberInput {
+    height: 40px;
+    width: 90%;
+}
+
+.centeredText {
+    vertical-align: middle;
+    height:50px;
+}

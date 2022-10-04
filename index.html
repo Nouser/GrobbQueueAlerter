@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Grobbulus Queue Alerter</h1>
+<p style="text-align: left;">Choose what queue length (in number of people, minutes, or both) you want to be alerted at, and which alerts you want to trigger. Values can be blank or kept at their defaults to ignore that condition.</p>
+<p>
+    <strong>Max Queue Count (by people): <input class="numberInput" placeholder="999999" type="number" id="maxQueueCount"/></strong>
+</p>
+<p>
+    <strong>Max Queue Time (minutes): <input class="numberInput" placeholder="999999" type="number" id="maxQueueTime"/></strong>
+</p>
+
+<section style="text-align:right" id="alertSettingsSection">
+    <p><label for="sirenEnabled"><strong>Play siren sound when queue reaches desired length?</strong><input class="checkboxInput" type="checkbox" id="sirenEnabled"/><a href="javascript:void(0)" onclick="exampleAudio()">Example</a></label></p>
+    <p><label for="notificationsEnabled"><strong>Allow notifications?</strong><input class="checkboxInput" type="checkbox" id="notificationsEnabled"/><a href="javascript:void(0)" onclick="exampleNotification()">Example</a></label></p>
+    <p><label for="browserAlertEnabled"><strong>Browser alert prompt?</strong><input class="checkboxInput" type="checkbox" id="browserAlertEnabled"/><a href="javascript:void(0)" onclick="exampleAlert()">Example</a></label></p>
+</section>
+<p>
+    <button onclick="startAlert()">Start Monitoring Queue</button>
+</p>
+<h4>Powered by <a href="https://grobb.lol/">https://grobb.lol/</a></h4>
+</body>
+</html>
