@@ -98,10 +98,11 @@ function grobbLolDataFlow() {
         let parsedData = parseGrobbLolData(result);
         let queueCount = parsedData["queueCount"];
         let queueTime = parsedData["queueTime"];
+        queueTime = queueTime.split((" "))[0];
         if (queueTime == "N/A") {
             queueTime = 0;
         }
-        if (queueTime == "< 1 minute") {
+        if (queueTime == "<") {
             queueTime = 1;
         }
         console.dir(queueTime);
