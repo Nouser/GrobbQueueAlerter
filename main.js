@@ -101,6 +101,9 @@ function grobbLolDataFlow() {
         if (queueTime == "N/A") {
             queueTime = 0;
         }
+        if (queueCount == "< 1 minute") {
+            queueCount = 1;
+        }
         if (queueCount > desiredQueueCountBeforeAlert || queueTime > desiredQueueTimeBeforeAlert) {
             alertQueue();
         }
