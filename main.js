@@ -14,9 +14,24 @@ function getGrobbLolData() {
         let parser = new DOMParser();
         let doc = parser.parseFromString(output, 'text/html');
         return doc;
-    })
-
+    });
 }
+
+const retryGetGrobbLolData = (operation, delay, retries) => new Promise(((resolve, reject) => {
+    return operation()
+        .then(resolve)
+        .catch((reason) => {
+            if (retries > 0) {
+                return wait(delay)
+                    .then(retryGetGrobbLolData.bind(null, operation, delay, retries - 1))
+                    .then(resolve)
+                    .catch(reject);
+            }
+            return reject(reason);
+        })
+}))
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
 
 /* Parses GrobLol data into most recent queue time/size */
 function parseGrobbLolData(el) {
@@ -94,7 +109,7 @@ function clearInterval() {
  * Whole data flow.
  */
 function grobbLolDataFlow() {
-    getGrobbLolData().then(result => {
+    retryGetGrobbLolData(getGrobbLolData, 10000, 10).then(result => {
         let parsedData = parseGrobbLolData(result);
         let queueCount = parsedData["queueCount"];
         let queueTime = parsedData["queueTime"];
@@ -105,6 +120,8 @@ function grobbLolDataFlow() {
         if (queueTime == "<") {
             queueTime = 1;
         }
+        queueCount = Number(queueCount);
+        queueTime = Number(queueTime);
         console.dir(queueTime);
         console.log("Queue time:" + queueTime);
         console.log("Desired queue time:" + desiredQueueTimeBeforeAlert);
