@@ -30,13 +30,13 @@ function parseGrobbLolData(el) {
     Check all the enabled alerts and trigger them.
  */
 function alertQueue() {
-    if (document.getElementById("sirenEnabled")) {
+    if (document.getElementById("sirenEnabled").checked) {
         exampleAudio();
     }
-    if (document.getElementById("notificationsEnabled")) {
+    if (document.getElementById("notificationsEnabled").checked) {
         exampleNotification();
     }
-    if (document.getElementById("browserAlertEnabled")) {
+    if (document.getElementById("browserAlertEnabled").checked) {
         exampleAlert();
     }
     // This is a canary variable I'm using to check on the first iteration
@@ -101,9 +101,14 @@ function grobbLolDataFlow() {
         if (queueTime == "N/A") {
             queueTime = 0;
         }
-        if (queueCount == "< 1 minute") {
-            queueCount = 1;
+        if (queueTime == "< 1 minute") {
+            queueTime = 1;
         }
+        console.dir(queueTime);
+        console.log("Queue time:" + queueTime);
+        console.log("Desired queue time:" + desiredQueueTimeBeforeAlert);
+        console.log("Queue Count: " + queueCount);
+        console.log("Desired queue count: " + desiredQueueCountBeforeAlert);
         if (queueCount > desiredQueueCountBeforeAlert || queueTime > desiredQueueTimeBeforeAlert) {
             alertQueue();
         }
